@@ -1,0 +1,1 @@
+// User profile containing name, level, and waste collected

@@ -1,0 +1,1 @@
+// Map containing an overview of nearby waste

@@ -1,0 +1,1 @@
+// Camera screen for capturing a picture of the waste you collected or reported
