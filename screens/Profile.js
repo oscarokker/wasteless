@@ -37,15 +37,18 @@ const UserStat = ({ title, number, unit }) => (
 );
 
 // PickedUpWaste Component
-const PickedUpWaste = () => (
+const PickedUpWaste = ({ minutesAgo }) => (
   <View style={styles.pickedUpWaste}>
-    <View style={styles.wasteImage} />
+    <Image source={require('../assets/profile-picture-1.png')} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
-        <View style={styles.checkIcon} />
-        <View style={styles.fuelIcon} />
+        <Image source={require('../assets/icons/food-waste-icon.png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/icons/plastic-waste-icon.png')} style={styles.wasteTypeIcon} />
       </View>
-      <Text style={styles.wasteTime}>Cleaned 4 minutes ago</Text>
+      <View style={styles.timeAgo}>
+        <Image source={require('../assets/icons/clock-icon.png')} />
+        <Text style={styles.wasteTime}>{minutesAgo} min ago</Text>
+      </View>
     </View>
   </View>
 );
@@ -56,14 +59,16 @@ const Profile = () => {
     <View style={styles.profileContainer}>
       <ProfileHeader />
       <View style={styles.statsContainer}>
-        <UserStat title="Trash collected" number="749" unit="Unit" />
-        <UserStat title="Total trash weight" number="484" unit="kg" />
+        <UserStat title="Waste collected" number="749" unit="Unit" />
+        <UserStat title="Total waste weight" number="484" unit="kg" />
         <UserStat title="CO2e avoided" number="327" unit="kg" />
         <UserStat title="Distance walked" number="238" unit="km" />
       </View>
-      <Text style={styles.previousWasteText}>Previous waste collected</Text>
-      <PickedUpWaste />
-      <PickedUpWaste />
+      <View style={styles.wasteCollected}>
+        <Text style={styles.collectedWasteText}>Collected Waste</Text>
+        <PickedUpWaste minutesAgo="4" />
+        <PickedUpWaste minutesAgo="11" />
+      </View>
     </View>
   );
 };
@@ -151,7 +156,7 @@ const styles = StyleSheet.create({
     width: 176,
     height: 160,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: 16,
     elevation: 2,
     borderRadius: 16,
@@ -163,9 +168,9 @@ const styles = StyleSheet.create({
     color: '#355231',
   },
   statIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     backgroundColor: '#355231',
   },
   statAmountAndUnit: {
@@ -182,48 +187,53 @@ const styles = StyleSheet.create({
     lineHeight: '140%',
     color: '#333333',
   },
-  previousWasteText: {
+  collectedWasteText: {
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
     color: '#333333',
     paddingHorizontal: 16,
   },
+  wasteCollected: {
+    gap: 16,
+  },
   pickedUpWaste: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    marginHorizontal: 16,
-    marginBottom: 12,
+    gap: 8,
+    borderRadius: 16,
+    backgroundColor: '#F5F5F5',
+    overflow: 'hidden',
     elevation: 2,
   },
   wasteImage: {
-    width: 120,
+    width: 80,
     height: 80,
-    backgroundColor: '#ccc', // Placeholder
+    backgroundColor: '#ccc', // TODO: replace with images of waste
   },
   wasteDetails: {
     flex: 1,
-    padding: 8,
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    paddingTop: 8,
+    paddingBottom: 8,
   },
   iconContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 8,
+    justifyContent: 'flex-start',
+    gap: 4,
   },
-  checkIcon: {
-    width: 24,
-    height: 24,
-    backgroundColor: '#2E7D32',
-    borderRadius: 12,
+  wasteTypeIcon: {
+    borderRadius: 4,
   },
-  fuelIcon: {
-    width: 24,
-    height: 24,
-    backgroundColor: '#800080',
-    borderRadius: 12,
+  timeAgo: {
+
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   wasteTime: {
     fontSize: 12,
+    lineHeight: '140%',
     color: '#666666',
   },
 });
