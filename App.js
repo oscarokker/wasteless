@@ -1,33 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import NavigationBar from './components/NavigationBar';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import ReportWasteScreen from './screens/ReportWaste';
+import MapScreen from './screens/Map';
+import ProfileScreen from './screens/Profile';
 
-export default function App() {
-  const handleButtonPress = (button) => {
-    console.log(`Navigating to ${button}`);
-    // Add navigation logic here if needed
-  };
+const Tab = createBottomTabNavigator();
 
+function TabNavigator() {
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text>Welcome to Wasteless!</Text>
-        <Text>OMG it works!!!!</Text>
-      </View>
-      <NavigationBar activeButton="Profile" onButtonPress={handleButtonPress} />
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Report Waste"
+        component={ReportWasteScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Map"
+        component={MapScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="map" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
+  );
+}

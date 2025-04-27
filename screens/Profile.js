@@ -42,11 +42,11 @@ const PickedUpWaste = ({ minutesAgo }) => (
     <Image source={require('../assets/profile-picture-1.png')} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
-        <Image source={require('../assets/icons/food-waste-icon.png')} style={styles.wasteTypeIcon} />
-        <Image source={require('../assets/icons/plastic-waste-icon.png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/food-waste-icon.png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/plastic-waste-icon.png')} style={styles.wasteTypeIcon} />
       </View>
       <View style={styles.timeAgo}>
-        <Image source={require('../assets/icons/clock-icon.png')} />
+        <Image source={require('../assets/clock-icon.png')} />
         <Text style={styles.wasteTime}>{minutesAgo} min ago</Text>
       </View>
     </View>
@@ -59,7 +59,7 @@ const Profile = () => {
     <View style={styles.profileContainer}>
       <ProfileHeader />
       <View style={styles.statsContainer}>
-        <UserStat title="Waste collected" number="749" unit="Unit" />
+        <UserStat title="Waste collected" number="749" unit="pieces" />
         <UserStat title="Total waste weight" number="484" unit="kg" />
         <UserStat title="CO2e avoided" number="327" unit="kg" />
         <UserStat title="Distance walked" number="238" unit="km" />
@@ -77,12 +77,12 @@ const Profile = () => {
 const styles = StyleSheet.create({
   profileContainer: {
     padding: 16,
-    paddingBotoom: 64,
+    paddingBottom: 64,
     gap: 32,
   },
   profileHeader: {
     flexDirection: 'column',
-    alignItems: 'left',
+    alignItems: 'flex-start',
     gap: 16,
   },
   profilePictureAndName: {
@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
   },
   statNumber: {
     fontSize: 18,
-    lineHeight: '120%',
+    lineHeight: 21.6, // 120%
     fontWeight: 700,
     color: '#333333',
   },
   statUnit: {
     fontSize: 12,
-    lineHeight: '140%',
+    lineHeight: 16.8, // 140%
     color: '#333333',
   },
   collectedWasteText: {
@@ -226,14 +226,13 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   timeAgo: {
-
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
   },
   wasteTime: {
     fontSize: 12,
-    lineHeight: '140%',
+    lineHeight: 16.8, // 140%
     color: '#666666',
   },
 });
