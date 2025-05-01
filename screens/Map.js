@@ -6,7 +6,6 @@ import MarkerInformation from "../components/MarkerInformation"
 import trash1 from "../assets/trash1.png";
 import trash2 from "../assets/trash2.png";
 import trash3 from "../assets/trash3.png";
-import pinVariant1 from "../assets/pinVariant1.png";
 import pinNormalUnselected from "../assets/pin-normal-unselected.png";
 import pinNormalSelected from "../assets/pin-normal-selected.png";
 import pinHazardousSelected from "../assets/pin-hazardous-selected.png";
@@ -93,7 +92,7 @@ export default function MapScreen() {
                     <Marker
                         key={marker.id}
                         coordinate={{ latitude: marker.latitude, longitude: marker.longitude, }}
-                        image={pinNoUnselected}
+                        image={pinNormalUnselected}
                         anchor={{ x: 0.5, y: 1 }}
                         calloutAnchor={{ x: 0.5, y: 0 }}
                     >
