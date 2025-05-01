@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Alert} from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import CameraScreen from './Camera';
 
-export default function App() {
+export default function ReportWasteScreen(){
+  const navigation = useNavigation();
   const [showWarning, setShowWarning] = useState(false); // MARIE: Navngivningen skal opdateres 
   const [showCategory, setShowCategory] = useState(false);
+  const [isRegularPressed, setIsRegularPressed] = useState(false);
+  const [isHazardousPressed, setIsHazardousPressed] = useState(false);
   const handleReportPress = () => {
     Alert.alert(
       "Redirection",
@@ -14,60 +20,83 @@ export default function App() {
   };
 
   return (
-    <View style={styles.mainContainer}>
-    {/* MARIE: tilføj pil tilbage eller x, som leder tilbage map-mainScreen + evt. alert "er du sikker?"*/}
-      <Text style={styles.headline1}>Add found waste</Text>
-      <View style={styles.subContainer}>
-        <Text style={styles.headline2}>Waste</Text>
-        <Text style={styles.currentLocationAddress}>Placeholder for taken picture of the waste</Text>
-        </View>
-      <View style={styles.subContainer}>
-        <Text style={styles.headline2}>Location</Text>
-        <Text style={styles.currentLocationAddress}>Address placeholder</Text>
-        </View>
-      <View style={styles.subContainer}>
-        <Text style={styles.headline2}>Type</Text>
-        <View style={styles.buttonRow}>
-        {/* REGULAR WASTE BUTTON */}
-        <TouchableOpacity 
-        style={styles.regularWasteButton}
-        onPress={() => {
-          setShowCategory(true); // Displays the "Category" view when pressed
-        }}>
-        <Text style={styles.buttonText}>Regular</Text>
-        </TouchableOpacity>
-        {/* HAZARDOUS WASTE BUTTON */}
-          <TouchableOpacity 
-          style={styles.hazardousWasteButton}
-            onPress={() => {
-              setShowWarning(true);
-            }}>
-             <Text style={styles.buttonText}>Hazardous</Text>
+    <>
+      <View style={styles.mainContainer}>
+        <Text style={styles.headline1}>Add found waste</Text>
+  
+        {/* TAKE PICTURE OF FOUND WASTE */}
+        <View style={styles.subContainer}>
+          <Text style={styles.headline2}>Waste</Text>
+          <TouchableOpacity
+            style={styles.placeholderRect}
+            onPress={() => navigation.navigate('Camera')}>
+            <Image 
+            source={require('../assets/cameraIcon.png')}
+            style={styles.cameraIcon}
+            />
           </TouchableOpacity>
+        </View>
+  
+        {/* LOCATION */}
+        <View style={styles.subContainer}>
+          <Text style={styles.headline2}>Location</Text>
+          <Text style={styles.currentLocationAddress}>Address placeholder</Text>
+        </View>
+  
+        {/* TYPE */}
+        <View style={styles.subContainer}>
+          <Text style={styles.headline2}>Type</Text>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              style={styles.regularWasteButton}
+              onPress={() => {
+                setShowCategory(true);
+                setIsRegularPressed(true);
+              }}>
+              <Text style={styles.buttonText}>Regular</Text>
+            </TouchableOpacity>
+  
+            <TouchableOpacity
+              style={styles.hazardousWasteButton}
+              onPress={() => {
+                setShowWarning(true);
+                setIsHazardousPressed(true);
+              }}>
+              <Text style={styles.buttonText}>Hazardous</Text>
+            </TouchableOpacity>
           </View>
+  
           {showWarning && (
-            <Text style={styles.warningText}>Please avoid picking up hazardous waste - local authorities will handle it instead.
+            <Text style={styles.warningText}>
+              Please avoid picking up hazardous waste - local authorities will handle it instead.
             </Text>
           )}
         </View>
-
-      {showCategory && (
-        <View style={styles.categoryContainer}>
-          <Text style={styles.headline2}>Category</Text>
-          <Text style={styles.currentLocationAddress}>Placeholder for horisontal scrollView component</Text>
-        </View>
-      )}
+  
+        {/* CATEGORY (kun hvis valgt) */}
+        {showCategory && (
+          <View style={styles.categoryContainer}>
+            <Text style={styles.headline2}>Category</Text>
+            <Text style={styles.currentLocationAddress}>
+              Placeholder for horisontal scrollView component
+            </Text>
+          </View>
+        )}
+  
+        {/* HAZARDOUS KNAP (kun hvis valgt) */}
         {showWarning && (
-          <TouchableOpacity 
-          style={styles.reportHazardousWasteButton}
-          onPress={handleReportPress}>
+          <TouchableOpacity
+            style={styles.reportHazardousWasteButton}
+            onPress={handleReportPress}>
             <Text style={styles.darkButtonText}>Report hazardous waste</Text>
           </TouchableOpacity>
         )}
-        <StatusBar style="auto" />
-    </View>
+      </View>
+  
+      <StatusBar style="auto" />
+    </>
   );
-}
+}  
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -93,6 +122,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,  
     },
+  placeholderRect: {
+    height: 150,
+    width: '100%',
+    backgroundColor: '#EBEBEB',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginTop: 5,
+  },
+  cameraIcon: {
+    width: 35,
+    height: 35,
+  },
   currentLocationAddress: {
     color: '#969696',
     fontSize: 14,
@@ -106,20 +148,26 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   regularWasteButton: {
-    backgroundColor: '#85C56C',
+    backgroundColor: 'rgba(133, 197, 108, 0.4)',
     borderRadius: 5,
     padding: 10,
-    width: '140',
-    height: '45',
+    width: 140,
+    height: 45,
     marginBottom: 20,
   },
   hazardousWasteButton: {
-    backgroundColor: '#E10F1E',
+    backgroundColor: 'rgba(225, 15, 30, 0.4)',
     borderRadius: 5,
     padding: 10,
-    width: '140',
-    height: '45',
+    width: 140,
+    height: 45,
     marginBottom: 20,
+  },
+  regularButtonPressed: {
+    backgroundColor: 'rgba(133, 197, 108, 1)',
+  },
+  hazardousWastePressed: {
+    backgroundColor: 'rgba(225, 15, 30, 1)',
   },
   buttonText: {
     color: 'white',
@@ -146,7 +194,7 @@ const styles = StyleSheet.create({
   },
   reportHazardousWasteButton: {
     position: 'absolute',
-    bottom: 25, // MARIE: Justeres når navi-baren er kommet på
+    bottom: 45, // MARIE: Justeres når navi-baren er kommet på
     height: 50,
     width: 270,
     alignSelf: 'center',
