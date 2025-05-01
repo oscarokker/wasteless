@@ -14,8 +14,7 @@ import pinHazardousUnselected from "../assets/pin-hazardous-unselected.png";
 export default function MapScreen() {
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    const [customMarkers, setCustomMarkers] = useState([]);
-    const [deleteMarkers, setDeleteMarkers] = useState([]);
+    const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
     // Add image and icon data
     const markersInfo = [
@@ -87,12 +86,24 @@ export default function MapScreen() {
                     longitudeDelta: 0.01,
                 }}
                 showsUserLocation={true}
+                onPress={() => setSelectedMarkerId(null)}
             >
                 {markersInfo.map((marker) => (
                     <Marker
                         key={marker.id}
                         coordinate={{ latitude: marker.latitude, longitude: marker.longitude, }}
-                        image={pinNormalUnselected}
+                        onPress={() =>
+                            setSelectedMarkerId((prev) => (prev === marker.id ? null : marker.id))
+                        }
+                        image={
+                            marker.id === 3
+                                ? selectedMarkerId === 3
+                                    ? pinHazardousSelected
+                                    : pinHazardousUnselected
+                                : selectedMarkerId === marker.id
+                                    ? pinNormalSelected
+                                    : pinNormalUnselected
+                        }
                         anchor={{ x: 0.5, y: 1 }}
                         calloutAnchor={{ x: 0.5, y: 0 }}
                     >
@@ -106,15 +117,6 @@ export default function MapScreen() {
                             />
                         </Callout>
                     </Marker>
-                ))}
-
-                {/* Custom markers from taps */}
-                {customMarkers.map((marker, index) => (
-                    <Marker
-                        key={index}
-                        coordinate={marker}
-                        title={`Custom Marker ${index + 1}`}
-                    />
                 ))}
             </MapView>
         </View >

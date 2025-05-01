@@ -1,53 +1,30 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import ReportWasteScreen from './screens/ReportWaste';
 import MapScreen from './screens/Map';
 import ProfileScreen from './screens/Profile';
-import CameraScreen from './screens/Camera';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
-// STACK FOR REPORTWASTE SCREEN
-function ReportWasteStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="ReportWaste"
-        component={ReportWasteScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Camera"
-        component={CameraScreen}
-        options={{ title: 'Take a Picture' }}
-      />
-    </Stack.Navigator>
-  );
-}
-
-// BOTTOM NAVIGATION BAR
 function TabNavigator() {
   return (
     <Tab.Navigator>
+      <Tab.Screen
+        name="Report Waste"
+        component={ReportWasteScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add" size={size} color={color} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Map"
         component={MapScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="map" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Report"
-        component={ReportWasteStack}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="add" size={size} color={color} />
           ),
         }}
       />
