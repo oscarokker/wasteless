@@ -1,23 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import * as Location from 'expo-location';
+import React, { useState, useEffect } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
 import { Image, StyleSheet, Text, View, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import CameraScreen from './Camera';
+import ReportFeedback from '../components/ReportFeedback';
+import RegularWasteCategories from '../components/RegularWasteCategories';
+
 
 export default function ReportWasteScreen(){
   const navigation = useNavigation();
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [locationError, setLocationError] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
   const [showWarning, setShowWarning] = useState(false); // MARIE: Navngivningen skal opdateres 
   const [showCategory, setShowCategory] = useState(false);
+  const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
+  const [isRegularFeedbackVisible, setIsRegularFeedbackVisible] = useState(false); //MARIE: Skal fjernes medmindre vi ender med at bruge den for at lave forskellige beskeder
   const [isRegularPressed, setIsRegularPressed] = useState(false);
   const [isHazardousPressed, setIsHazardousPressed] = useState(false);
-  const handleReportPress = () => {
-    Alert.alert(
-      "Redirection",
-      "You will now be redirected to the map and get a pop-up feedback",
-      [{ text: "OK" }]
-    );
-  };
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setLocationError('Permission to access location was denied');
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      let address = await Location.reverseGeocodeAsync(location.coords);
+      setCurrentLocation(address[0]);
+    })();
+  }, []);
 
   return (
     <>
@@ -29,74 +43,124 @@ export default function ReportWasteScreen(){
           <Text style={styles.headline2}>Waste</Text>
           <TouchableOpacity
             style={styles.placeholderRect}
-            onPress={() => navigation.navigate('Camera')}>
-            <Image 
-            source={require('../assets/cameraIcon.png')}
-            style={styles.cameraIcon}
-            />
+            onPress={() => navigation.navigate('Camera', { onImagePicked: handleImagePick })}>
+              {imageUri ? (
+                <Image 
+                source={{ uri: imageUri }} 
+                style={styles.image} //MARIE: Du kan tilpasse stileringen her
+                />
+              ) : (
+              <Image 
+              source={require('../assets/cameraIcon.png')}
+              style={styles.cameraIcon}
+              />
+              )}
           </TouchableOpacity>
         </View>
   
-        {/* LOCATION */}
+        {/* CURRENT LOCATION */}
         <View style={styles.subContainer}>
-          <Text style={styles.headline2}>Location</Text>
-          <Text style={styles.currentLocationAddress}>Address placeholder</Text>
-        </View>
+        <Text style={styles.headline2}>Location</Text>
+         {currentLocation ? (
+          <Text style={styles.currentLocationAddress}>
+            {currentLocation.street} {currentLocation.streetNumber}, {currentLocation.city}, {currentLocation.country} 
+            </Text> //MARIE: Skal det være region eller land?
+          ) : locationError ? (
+          <Text style={styles.currentLocationAddress}>{locationError}</Text>
+          ) : (
+          <Text style={styles.currentLocationAddress}>Looking for location...</Text>
+          )}
+          </View>
   
-        {/* TYPE */}
+        {/* CHOOSE TYPE OF WASTE */}
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Type</Text>
           <View style={styles.buttonRow}>
             <TouchableOpacity
-              style={styles.regularWasteButton}
+              style={[
+                styles.regularWasteButton,
+                isRegularPressed && styles.regularButtonPressed,
+              ]}
               onPress={() => {
                 setShowCategory(true);
                 setIsRegularPressed(true);
+                setIsHazardousPressed(false);
+                setShowWarning(false);
               }}>
               <Text style={styles.buttonText}>Regular</Text>
             </TouchableOpacity>
   
             <TouchableOpacity
-              style={styles.hazardousWasteButton}
+              style={[
+                styles.hazardousWasteButton,
+                isHazardousPressed && styles.hazardousWastePressed, // Skift til 100% opacitet
+              ]}
               onPress={() => {
                 setShowWarning(true);
                 setIsHazardousPressed(true);
+                setIsRegularPressed(false);
+                setShowCategory(false);
               }}>
               <Text style={styles.buttonText}>Hazardous</Text>
             </TouchableOpacity>
           </View>
   
           {showWarning && (
-            <Text style={styles.warningText}>
-              Please avoid picking up hazardous waste - local authorities will handle it instead.
-            </Text>
+            <View style={styles.warningRow}>
+              <Image
+                source={require('../assets/beAwareIcon.png')}
+                style={styles.warningIcon}
+              />
+              <Text style={styles.warningText}>Please avoid picking up hazardous waste - local authorities will handle it instead.</Text>
+            </View>
           )}
         </View>
   
-        {/* CATEGORY (kun hvis valgt) */}
+        {/* CATEGORY (IF REGULAR WASTE IS CHOSEN) */}
         {showCategory && (
           <View style={styles.categoryContainer}>
             <Text style={styles.headline2}>Category</Text>
-            <Text style={styles.currentLocationAddress}>
-              Placeholder for horisontal scrollView component
-            </Text>
+            <RegularWasteCategories/>
           </View>
         )}
-  
-        {/* HAZARDOUS KNAP (kun hvis valgt) */}
-        {showWarning && (
+        {/* REGULAR BUTTON (IF CHOSEN) */}
+        {isRegularPressed && (
           <TouchableOpacity
-            style={styles.reportHazardousWasteButton}
-            onPress={handleReportPress}>
-            <Text style={styles.darkButtonText}>Report hazardous waste</Text>
+            style={styles.reportRegularWasteButton}
+            onPress={() => {
+              setIsFeedbackVisible(true);
+              navigation.navigate('Map'); 
+            }}>
+            <Text style={styles.buttonText}>Pick up waste</Text>
           </TouchableOpacity>
         )}
+        {/* HAZARDOUS BUTTON (IF CHOSEN) */}
+        {showWarning && (
+          <TouchableOpacity
+          style={styles.reportHazardousWasteButton}
+          onPress={() => {
+            setIsFeedbackVisible(true);
+            navigation.navigate('Map'); 
+          }}>
+          <Text style={styles.darkButtonText}>Report hazardous waste</Text>
+        </TouchableOpacity>
+        )}
       </View>
-  
+      {/* FEEDBACK MODAL */}
+      <ReportFeedback
+        visible={isFeedbackVisible}
+        onClose={() => {
+          setIsFeedbackVisible(false);
+          navigation.navigate('Map');
+        }}
+        XPpoints="+ 100 XP"
+        header="Thank you!"
+        paragraph="The waste has been reported."
+      />
       <StatusBar style="auto" />
     </>
   );
-}  
+}
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -135,9 +199,14 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
   },
+  pictureTaken: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 10,
+  },
   currentLocationAddress: {
     color: '#969696',
-    fontSize: 14,
+    fontSize: 16,
     fontStyle: 'italic', 
     marginLeft: 10,
     }, 
@@ -153,6 +222,11 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 140,
     height: 45,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
     marginBottom: 20,
   },
   hazardousWasteButton: {
@@ -161,6 +235,11 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 140,
     height: 45,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
     marginBottom: 20,
   },
   regularButtonPressed: {
@@ -176,7 +255,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     },
   darkButtonText: {
-    color: '85C56C',
+    color: '#85C56C',
     fontSize: 18,
     fontWeight: 'bold', 
     textAlign: 'center',
@@ -185,23 +264,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',  
-    gap: 15,
+    gap: 25,
+    width: 250,
+    alignSelf: 'center'
   },
   warningText: {
     color: '#E10F1E',
-    fontSize: 14,
+    fontSize: 16,
     marginTop: 10,
+  },
+  warningIcon: {
+    width: 28,
+    height: 28, //MARIE: Skal denne være større?
   },
   reportHazardousWasteButton: {
     position: 'absolute',
-    bottom: 45, // MARIE: Justeres når navi-baren er kommet på
-    height: 50,
+    borderRadius: 35,
+    height: 55,
     width: 270,
     alignSelf: 'center',
     justifyContent: 'center', 
     backgroundColor: '#FFFFFF',
     borderWidth: 2,
+    borderColor: '#85C56C', //MARIE: Skal denne være rød? 
+    bottom: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  reportRegularWasteButton: {
+    position: 'absolute',
+    borderRadius: 35,
+    height: 55,
+    width: 270,
+    alignSelf: 'center',
+    justifyContent: 'center', 
+    backgroundColor: '#85C56C',
+    borderWidth: 2,
     borderColor: '#85C56C',
-    borderRadius: 25,
+    bottom: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   }
 });

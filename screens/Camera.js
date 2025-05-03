@@ -21,7 +21,7 @@ export default function CameraScreen() {
     if (photo?.uri) {
       await MediaLibrary.saveToLibraryAsync(photo.uri);
       console.log('Saved to library:', photo.uri);
-      navigation.goBack(); // Gå tilbage til ReportWasteScreen
+      navigation.goBack(); // NAVIGATES BACK TO ReportWasteScreen
     }
   };
 
@@ -36,16 +36,14 @@ export default function CameraScreen() {
   return (
     <View style={styles.container}>
       <CameraView ref={cameraRef} style={styles.camera} facing={facing}>
-        <View style={styles.controls}>
-          <TouchableOpacity
-            style={styles.ctrlButton}
-            onPress={() => setFacing(f => (f === 'back' ? 'front' : 'back'))}>
-            <Text style={styles.ctrlText}>Flip</Text>
+        <TouchableOpacity
+        style={styles.flipButton}
+        onPress={() => setFacing(f => (f === 'back' ? 'front' : 'back'))}>
+          <Text style={styles.ctrlText}>Flip</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.ctrlButton} onPress={takePhoto}>
+          <TouchableOpacity style={styles.takePhotoButton} onPress={takePhoto}>
             <Text style={styles.ctrlText}>Snap</Text>
           </TouchableOpacity>
-        </View>
       </CameraView>
     </View>
   );
@@ -60,11 +58,31 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
-  ctrlButton: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    paddingVertical: 10,
-    paddingHorizontal: 18,
+  flipButton: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    padding: 10,
     borderRadius: 8,
+  },  
+  takePhotoButton: {
+    position: 'absolute',
+    bottom: 30,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(123, 120, 120, 0.6)',
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#fff',
+    borderWidth: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
   ctrlText: {
     color: '#fff',
