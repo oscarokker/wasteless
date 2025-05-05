@@ -1,5 +1,29 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import wasteCollected from "../assets/icons/waste-collected-icon.png";
+import wasteWeight from "../assets/icons/waste-weight-icon.png";
+import co2eAvoided from "../assets/icons/co2e-avoided-icon.png";
+import distanceWalked from "../assets/icons/distance-walked-icon.png";
+import waste1 from "../assets/waste_images/waste1.png";
+import waste2 from "../assets/waste_images/waste2.png";
+import waste3 from "../assets/waste_images/waste3.png";
+import waste4 from "../assets/waste_images/waste4.png";
+
+// Map user stat icons to an array
+const userStatIcons = {
+  wasteCollected,
+  wasteWeight,
+  co2eAvoided,
+  distanceWalked,
+};
+
+// Map waste images to an array
+const wasteImages = {
+  waste1,
+  waste2,
+  waste3,
+  waste4,
+};
 
 // ProfileHeader Component
 const ProfileHeader = () => (
@@ -14,7 +38,9 @@ const ProfileHeader = () => (
         <Text style={styles.playerTitleText}>Native Wastelander</Text>
       </View>
       <View style={styles.XPBar}>
-        <View style={styles.XPProgressBar} />
+        <View style={styles.XPBarFull}>
+          <View style={styles.XPBarEarned} />
+        </View>
         <View style={styles.XPLabelContainer}>
           <Text style={styles.XPEarnedText}>2410</Text>
           <Text style={styles.XPRequiredText}>/3800 XP</Text>
@@ -25,10 +51,10 @@ const ProfileHeader = () => (
 );
 
 // UserStat Component
-const UserStat = ({ title, number, unit }) => (
-  <View style={styles.userStat}>
+const UserStat = ({ title, icon, number, unit, width }) => (
+  <View style={[styles.userStat, { width }]}>
     <Text style={styles.statTitle}>{title}</Text>
-    <View style={styles.statIcon} />
+    <Image source={userStatIcons[icon]} style={styles.statIcon} />
     <View style={styles.statAmountAndUnit}>
       <Text style={styles.statNumber}>{number}</Text>
       <Text style={styles.statUnit}>{unit}</Text>
@@ -37,9 +63,9 @@ const UserStat = ({ title, number, unit }) => (
 );
 
 // PickedUpWaste Component
-const PickedUpWaste = ({ minutesAgo }) => (
+const PickedUpWaste = ({ image, minutesAgo }) => (
   <View style={styles.pickedUpWaste}>
-    <Image source={require('../assets/profile-picture-1.png')} style={styles.wasteImage} />
+    <Image source={wasteImages[image]} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
         <Image source={require('../assets/food-waste-icon.png')} style={styles.wasteTypeIcon} />
@@ -55,31 +81,42 @@ const PickedUpWaste = ({ minutesAgo }) => (
 
 // Profile screen
 const Profile = () => {
+  const screenWidth = Dimensions.get('window').width;
+  const paddingHorizontal = 16;
+  const gap = 8;
+  const availableWidth = screenWidth - 2 * paddingHorizontal;
+  const userStatWidth = (availableWidth - gap) / 2;
+
   return (
-    <View style={styles.profileContainer}>
+    <ScrollView
+      contentContainerStyle={{
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        paddingBottom: 64,
+        flexDirection: 'column',
+        gap: 32,
+      }}
+    >
       <ProfileHeader />
       <View style={styles.statsContainer}>
-        <UserStat title="Waste collected" number="749" unit="pieces" />
-        <UserStat title="Total waste weight" number="484" unit="kg" />
-        <UserStat title="CO2e avoided" number="327" unit="kg" />
-        <UserStat title="Distance walked" number="238" unit="km" />
+        <UserStat title="Waste collected" icon="wasteCollected" number="449" unit="pieces" width={userStatWidth} />
+        <UserStat title="Total waste weight" icon="wasteWeight" number="484" unit="kg" width={userStatWidth} />
+        <UserStat title="CO2e avoided" icon="co2eAvoided" number="327" unit="kg" width={userStatWidth} />
+        <UserStat title="Distance walked" icon="distanceWalked" number="238" unit="km" width={userStatWidth} />
       </View>
       <View style={styles.wasteCollected}>
         <Text style={styles.collectedWasteText}>Collected Waste</Text>
-        <PickedUpWaste minutesAgo="4" />
-        <PickedUpWaste minutesAgo="11" />
+        <PickedUpWaste image="waste1" minutesAgo="4" />
+        <PickedUpWaste image="waste2" minutesAgo="11" />
+        <PickedUpWaste image="waste3" minutesAgo="84" />
+        <PickedUpWaste image="waste4" minutesAgo="91" />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 // Profile styling
 const styles = StyleSheet.create({
-  profileContainer: {
-    padding: 16,
-    paddingBottom: 64,
-    gap: 32,
-  },
   profileHeader: {
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -102,6 +139,7 @@ const styles = StyleSheet.create({
   },
   playerLevel: {
     flexDirection: 'column',
+    width: '100%',
     gap: 8,
   },
   levelAndTitle: {
@@ -120,13 +158,15 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   XPBar: {
-    height: 8,
     width: '100%',
-    backgroundColor: '#E0E0E0',
-    borderRadius: 4,
     gap: 4,
   },
-  XPProgressBar: {
+  XPBarFull: {
+    height: 8,
+    backgroundColor: '#E0E0E0',
+    borderRadius: 4,
+  },
+  XPBarEarned: {
     width: '64%',
     height: '100%',
     backgroundColor: '#007BFF',
@@ -138,6 +178,7 @@ const styles = StyleSheet.create({
   },
   XPEarnedText: {
     fontSize: 14,
+    fontWeight: 500,
     color: '#333333',
     textAlign: 'left',
   },
@@ -153,7 +194,6 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   userStat: {
-    width: 176,
     height: 160,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -170,8 +210,6 @@ const styles = StyleSheet.create({
   statIcon: {
     width: 48,
     height: 48,
-    borderRadius: 24,
-    backgroundColor: '#355231',
   },
   statAmountAndUnit: {
     alignItems: 'center',

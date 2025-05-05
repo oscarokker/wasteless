@@ -3,9 +3,9 @@ import { View, StyleSheet, ActivityIndicator, Text, Platform } from 'react-nativ
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import MarkerInformation from "../components/MarkerInformation"
-import trash1 from "../assets/trash1.png";
-import trash2 from "../assets/trash2.png";
-import trash3 from "../assets/trash3.png";
+import waste1 from "../assets/waste_images/waste1.png";
+import waste2 from "../assets/waste_images/waste2.png";
+import waste3 from "../assets/waste_images/waste3.png";
 import pinNormalUnselected from "../assets/pin-normal-unselected.png";
 import pinNormalSelected from "../assets/pin-normal-selected.png";
 import pinHazardousSelected from "../assets/pin-hazardous-selected.png";
@@ -21,7 +21,7 @@ export default function MapScreen() {
     const markersInfo = [
         {
             id: 1,
-            image: trash1,
+            image: waste1,
             title: "Ørestad Nord ",
             address: "2300 Copenhagen Municipality",
             latitude: 55.658499,
@@ -29,7 +29,7 @@ export default function MapScreen() {
         },
         {
             id: 2,
-            image: trash2,
+            image: waste2,
             title: "Emil Holms Kanal",
             address: "2300 Copenhagen Municipality",
             latitude: 55.659722,
@@ -38,7 +38,7 @@ export default function MapScreen() {
         },
         {
             id: 3,
-            image: trash3,
+            image: waste3,
             title: "Imia Alle",
             address: "2770 Kastrup",
             latitude: 55.620756,
