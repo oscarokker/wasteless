@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Text, StyleSheet, View, Image, Pressable } from "react-native";
+import foodWasteIcon from "../assets/foodwaste.png";
+import plasticWasteIcon from "../assets/plasticwaste.png";
+
+
 
 const MarkerInformation = ({ title, address, image, wasteTypes }) => {
-
     return (
         <View style={styles.div}>
             <View style={styles.div1}>
