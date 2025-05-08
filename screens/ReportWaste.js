@@ -1,8 +1,11 @@
 //MADE BY MARIE HJORTH
+//TO DO: Gør det muligt at vælge flere kategorier
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { Alert, TouchableOpacity } from 'react-native'; //Alert skal evt. slettesn
-import { Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Alert, TouchableOpacity } from 'react-native'; //Alert skal evt. tilføjes, hvis du er ved at gå ud af screenen uden at indsende rapporten
+import { Image, StyleSheet, Text, View} from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import ReportFeedback from '../components/ReportFeedback';
 import RegularWasteCategories from '../components/RegularWasteCategories';
@@ -10,13 +13,45 @@ import RegularWasteCategories from '../components/RegularWasteCategories';
 export default function ReportWasteScreen(){
   const navigation = useNavigation();
   const [photoUri, setPhotoUri] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
   const [showWarning, setShowWarning] = useState(false); // MARIE: Navngivningen skal opdateres 
   const [showCategory, setShowCategory] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
-  const [isRegularFeedbackVisible, setIsRegularFeedbackVisible] = useState(false); //MARIE: Skal fjernes medmindre vi ender med at bruge den for at lave forskellige beskeder
+  const [isHazardousFeedbackVisible, setIsHazardousFeedbackVisible] = useState(false);
   const [isRegularPressed, setIsRegularPressed] = useState(false);
   const [isHazardousPressed, setIsHazardousPressed] = useState(false);
+
+  React.useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      let address = await Location.reverseGeocodeAsync(location.coords);
+
+      if (address.length > 0) {
+        const { street, streetNumber, city, country } = address[0];
+        const fullAddress = `${street} ${streetNumber}, ${city}, ${country}`;
+        setCurrentLocation(fullAddress);
+      }
+    })();
+  }, []);
+  //MARIE: Skriv kommmentar om, hvad denne del af koden gør
+
+  const route = useRoute();
   
+  useEffect(() => {
+   if (route.params?.photoUri) {
+     setPhotoUri(route.params.photoUri);
+  }
+}, [route.params?.photoUri]);
+  //MARIE: Skriv kommentar om, hvad denne del af koden gør
+
+
   return (
     <>
       <View style={styles.mainContainer}>
@@ -28,17 +63,23 @@ export default function ReportWasteScreen(){
           <TouchableOpacity
             style={styles.placeholderRect}
             onPress={() => navigation.navigate('Camera')}>
+            {photoUri ? (
+              <Image source={{ uri: photoUri }} style={styles.photoPreview} />
+            ) : (
             <Image 
             source={require('../assets/icons/camera-icon.png')}
             style={styles.cameraIcon}
             />
+            )}
           </TouchableOpacity>
         </View>
   
         {/* CURRENT LOCATION */}
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Location</Text>
-          <Text style={styles.currentLocationAddress}>Address placeholder</Text>
+          <Text style={styles.currentLocationAddress}>
+            {currentLocation || 'Searching for location...'}
+            </Text>
         </View>
   
         {/* CHOOSE TYPE OF WASTE */}
@@ -108,23 +149,35 @@ export default function ReportWasteScreen(){
           <TouchableOpacity
           style={styles.reportHazardousWasteButton}
           onPress={() => {
-            setIsFeedbackVisible(true);
+            setIsFeedbackVisible(false);
+            setIsHazardousFeedbackVisible(true);
             navigation.navigate('Map'); 
           }}>
           <Text style={styles.darkButtonText}>Report hazardous waste</Text>
         </TouchableOpacity>
         )}
       </View>
-      {/* FEEDBACK MODAL */}
+      {/* FEEDBACK MODAL - REGULAR WASTE */}
       <ReportFeedback
         visible={isFeedbackVisible}
         onClose={() => {
           setIsFeedbackVisible(false);
           navigation.navigate('Map');
         }}
-        XPpoints="+ 100 XP"
+        XPpoints="+ 200 XP"
         header="Thank you!"
         paragraph="The waste has been reported."
+      />
+      {/* FEEDBACK MODAL - HAZARDOUS WASTE */}
+      <ReportFeedback
+        visible={isHazardousFeedbackVisible}
+        onClose={() => {
+          setIsHazardousFeedbackVisible(false);
+          navigation.navigate('Map');
+        }}
+        XPpoints="+ 100 XP"
+        header="Thank you!"
+        paragraph="The hazardous waste has been reported. Please avoid picking up hazardous waste!"
       />
       <StatusBar style="auto" />
     </>
