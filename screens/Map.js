@@ -11,8 +11,6 @@ import pinNormalUnselected from "../assets/pin-normal-unselected.png";
 import pinNormalSelected from "../assets/pin-normal-selected.png";
 import pinHazardousSelected from "../assets/pin-hazardous-selected.png";
 import pinHazardousUnselected from "../assets/pin-hazardous-unselected.png";
-import foodWasteIcon from "../assets/foodwaste.png";
-import plasticWasteIcon from "../assets/plasticwaste.png";
 
 export default function MapScreen() {
     const [location, setLocation] = useState(null);
