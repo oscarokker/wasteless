@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Text, StyleSheet, View, Image, Pressable } from "react-native";
+import foodWasteIcon from "../assets/foodwaste.png";
+import plasticWasteIcon from "../assets/plasticwaste.png";
 
-const MarkerInformation = ({ title, address, latitude, longitude, image }) => {
 
+
+const MarkerInformation = ({ title, address, image, wasteTypes }) => {
     return (
         <View style={styles.div}>
             <View style={styles.div1}>
@@ -22,9 +25,8 @@ const MarkerInformation = ({ title, address, latitude, longitude, image }) => {
                     <Text style={[styles.roldSkov9520, styles.roldSkov9520Typo]}>{address}</Text>
 
                     <View style={[styles.div4, styles.div4Layout]}>
-                        {/* 🔁 Show coordinates */}
-                        <Text style={[styles.cleaned1Minute, styles.roldSkov9520Typo]}>
-                            Lat: {latitude?.toFixed(4)} | Lng: {longitude?.toFixed(4)}
+                        <Text style={styles.cleanedText}>
+                            Cleaned 1 minute ago
                         </Text>
                     </View>
                 </View>
