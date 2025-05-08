@@ -1,3 +1,4 @@
+//MADE BY MARIE HJORTH
 import React from 'react';
 import { Image, View, Text, StyleSheet, ScrollView } from 'react-native';
 

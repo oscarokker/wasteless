@@ -1,3 +1,4 @@
+//MADE BY MARIE HJORTH
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Alert, TouchableOpacity } from 'react-native'; //Alert skal evt. slettesn
