@@ -1,0 +1,602 @@
+[
+    {
+        "id": 1,
+        "image": "waste1",
+        "title": "Ørestad Nord",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.658499,
+        "longitude": 12.581227,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 2,
+        "image": "waste2",
+        "title": "Emil Holms Kanal",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.659722,
+        "longitude": 12.590613,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 3,
+        "image": "waste3",
+        "title": "Imia Alle",
+        "address": "2770 Kastrup",
+        "latitude": 55.620756,
+        "longitude": 12.528245,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 4,
+        "image": "waste4",
+        "title": "Amager Strandpark",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6461,
+        "longitude": 12.6391,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 5,
+        "image": "waste4",
+        "title": "Sundbyvester Plads",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6475,
+        "longitude": 12.5907,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 6,
+        "image": "waste4",
+        "title": "DR Byen",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6594,
+        "longitude": 12.5913,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 7,
+        "image": "waste4",
+        "title": "Amager Centret",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6617,
+        "longitude": 12.5939,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 8,
+        "image": "waste4",
+        "title": "Holmbladsgade",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6621,
+        "longitude": 12.6023,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 9,
+        "image": "waste4",
+        "title": "Prags Boulevard",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6633,
+        "longitude": 12.6097,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 10,
+        "image": "waste4",
+        "title": "Teglholmen",
+        "address": "2450 Copenhagen SV",
+        "latitude": 55.6543,
+        "longitude": 12.5374,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 11,
+        "image": "waste4",
+        "title": "Islands Brygge",
+        "address": "2300 Copenhagen Municipality",
+        "latitude": 55.6592,
+        "longitude": 12.5775,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 12,
+        "image": "waste4",
+        "title": "Christianshavn Torv",
+        "address": "1422 Copenhagen K",
+        "latitude": 55.6734,
+        "longitude": 12.5911,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 13,
+        "image": "waste4",
+        "title": "Fælledparken",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.7003,
+        "longitude": 12.5714,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 14,
+        "image": "waste4",
+        "title": "Rådhuspladsen",
+        "address": "1550 Copenhagen V",
+        "latitude": 55.6759,
+        "longitude": 12.5655,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 15,
+        "image": "waste4",
+        "title": "Nørrebro Station",
+        "address": "2200 Copenhagen N",
+        "latitude": 55.6997,
+        "longitude": 12.5411,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 16,
+        "image": "waste4",
+        "title": "Forum Metro",
+        "address": "1900 Frederiksberg C",
+        "latitude": 55.6811,
+        "longitude": 12.5522,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 17,
+        "image": "waste4",
+        "title": "Svanemøllen Strand",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.7156,
+        "longitude": 12.5867,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 18,
+        "image": "waste4",
+        "title": "Valby Langgade",
+        "address": "2500 Valby",
+        "latitude": 55.6638,
+        "longitude": 12.5104,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 19,
+        "image": "waste4",
+        "title": "Bella Center",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6376,
+        "longitude": 12.5774,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 20,
+        "image": "waste4",
+        "title": "Lergravsparken",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6693,
+        "longitude": 12.6225,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 21,
+        "image": "waste4",
+        "title": "Hovedbanegården",
+        "address": "1570 Copenhagen V",
+        "latitude": 55.6726,
+        "longitude": 12.5649,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 22,
+        "image": "waste4",
+        "title": "Sankt Hans Torv",
+        "address": "2200 Copenhagen N",
+        "latitude": 55.692,
+        "longitude": 12.5567,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 23,
+        "image": "waste4",
+        "title": "Frederiksberg Have",
+        "address": "2000 Frederiksberg",
+        "latitude": 55.675,
+        "longitude": 12.5228,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 24,
+        "image": "waste4",
+        "title": "Nyboder",
+        "address": "1051 Copenhagen K",
+        "latitude": 55.6914,
+        "longitude": 12.5921,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 25,
+        "image": "waste4",
+        "title": "Østerport Station",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.691,
+        "longitude": 12.5999,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 26,
+        "image": "waste4",
+        "title": "Refshaleøen",
+        "address": "1432 Copenhagen K",
+        "latitude": 55.6926,
+        "longitude": 12.6127,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 27,
+        "image": "waste4",
+        "title": "Bryggebroen",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6634,
+        "longitude": 12.566,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 28,
+        "image": "waste4",
+        "title": "Nordhavn",
+        "address": "2150 Nordhavn",
+        "latitude": 55.7134,
+        "longitude": 12.6029,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 29,
+        "image": "waste4",
+        "title": "Sydhavnen",
+        "address": "2450 Copenhagen SV",
+        "latitude": 55.6521,
+        "longitude": 12.5497,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 30,
+        "image": "waste4",
+        "title": "Ørestad Station",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6301,
+        "longitude": 12.5776,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 31,
+        "image": "waste4",
+        "title": "Tivoli Gardens",
+        "address": "1553 Copenhagen V",
+        "latitude": 55.6735,
+        "longitude": 12.5681,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 32,
+        "image": "waste4",
+        "title": "Christiania",
+        "address": "1440 Copenhagen K",
+        "latitude": 55.672,
+        "longitude": 12.603,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 33,
+        "image": "waste4",
+        "title": "Bispebjerg Hospital",
+        "address": "2400 Copenhagen NV",
+        "latitude": 55.7076,
+        "longitude": 12.5321,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 34,
+        "image": "waste4",
+        "title": "Zoologisk Have",
+        "address": "2000 Frederiksberg",
+        "latitude": 55.6726,
+        "longitude": 12.5212,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 35,
+        "image": "waste4",
+        "title": "Kongens Nytorv",
+        "address": "1050 Copenhagen K",
+        "latitude": 55.6797,
+        "longitude": 12.5836,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 36,
+        "image": "waste4",
+        "title": "Carlsberg Byen",
+        "address": "1799 Copenhagen V",
+        "latitude": 55.664,
+        "longitude": 12.5341,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 37,
+        "image": "waste4",
+        "title": "Frederiksberg Centret",
+        "address": "2000 Frederiksberg",
+        "latitude": 55.6818,
+        "longitude": 12.5345,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 38,
+        "image": "waste4",
+        "title": "Amagerbro Station",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6616,
+        "longitude": 12.6003,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 39,
+        "image": "waste4",
+        "title": "Superkilen",
+        "address": "2200 Copenhagen N",
+        "latitude": 55.6999,
+        "longitude": 12.5531,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 40,
+        "image": "waste4",
+        "title": "Vesterport Station",
+        "address": "1620 Copenhagen V",
+        "latitude": 55.6762,
+        "longitude": 12.5634,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 41,
+        "image": "waste4",
+        "title": "Langelinie",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.6922,
+        "longitude": 12.6005,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 42,
+        "image": "waste4",
+        "title": "Gammel Strand",
+        "address": "1202 Copenhagen K",
+        "latitude": 55.678,
+        "longitude": 12.5801,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 43,
+        "image": "waste4",
+        "title": "Kalvebod Fælled",
+        "address": "2300 Copenhagen S",
+        "latitude": 55.6123,
+        "longitude": 12.5488,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 44,
+        "image": "waste4",
+        "title": "Sluseholmen",
+        "address": "2450 Copenhagen SV",
+        "latitude": 55.6491,
+        "longitude": 12.5339,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 45,
+        "image": "waste4",
+        "title": "Nyhavn",
+        "address": "1051 Copenhagen K",
+        "latitude": 55.6805,
+        "longitude": 12.5908,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 46,
+        "image": "waste4",
+        "title": "Enghave Plads",
+        "address": "1670 Copenhagen V",
+        "latitude": 55.6658,
+        "longitude": 12.5483,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 47,
+        "image": "waste4",
+        "title": "Den Blå Planet",
+        "address": "2770 Kastrup",
+        "latitude": 55.6383,
+        "longitude": 12.6561,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 48,
+        "image": "waste4",
+        "title": "Vanløse Station",
+        "address": "2720 Vanløse",
+        "latitude": 55.6867,
+        "longitude": 12.4925,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 49,
+        "image": "waste4",
+        "title": "Rigshospitalet",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.6933,
+        "longitude": 12.5658,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    },
+    {
+        "id": 50,
+        "image": "waste4",
+        "title": "Østre Anlæg",
+        "address": "2100 Copenhagen Ø",
+        "latitude": 55.6916,
+        "longitude": 12.5832,
+        "wasteTypes": [
+            "food",
+            "plastic"
+        ]
+    }
+]
