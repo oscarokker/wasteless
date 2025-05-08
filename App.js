@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import ReportWasteScreen from './screens/ReportWaste';
@@ -8,7 +8,7 @@ import ProfileScreen from './screens/Profile';
 import CameraScreen from './screens/Camera';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 // Navigation stack for report waste screen
 function ReportWasteStack() {
