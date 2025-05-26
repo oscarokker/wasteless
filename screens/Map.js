@@ -101,6 +101,7 @@ export default function MapScreen() {
                                 latitude={marker.latitude}
                                 longitude={marker.longitude}
                                 image={marker.image}
+                                wasteTypes={marker.wasteTypes}
                             />
                         </Callout>
                     </Marker>
