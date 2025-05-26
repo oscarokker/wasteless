@@ -1,0 +1,28 @@
+{
+  "markersInfo": [
+    {
+      "id": 1,
+      "image": "waste1",
+      "title": "Ørestad Nord",
+      "address": "2300 Copenhagen Municipality",
+      "latitude": 55.658499,
+      "longitude": 12.581227
+    },
+    {
+      "id": 2,
+      "image": "waste2",
+      "title": "Emil Holms Kanal",
+      "address": "2300 Copenhagen Municipality",
+      "latitude": 55.659722,
+      "longitude": 12.590613
+    },
+    {
+      "id": 3,
+      "image": "waste3",
+      "title": "Imia Alle",
+      "address": "2770 Kastrup",
+      "latitude": 55.620756,
+      "longitude": 12.528245
+    }
+  ]
+} 
