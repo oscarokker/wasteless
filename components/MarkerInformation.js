@@ -51,7 +51,7 @@ const MarkerInformation = ({ title, address, image, wasteTypes }) => {
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.address}>{address}</Text>
                     <View style={styles.timeAgo}>
-                        <Text style={styles.timeAgoText}>Cleaned 1 minute ago</Text>
+                        <Text style={styles.timeAgoText}>Cleaned xx minute ago</Text>
                     </View>
                 </View>
             </View>
