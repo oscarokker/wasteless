@@ -1,3 +1,4 @@
+//MADE BY MARIE HJORTH
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 

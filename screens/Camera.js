@@ -21,7 +21,7 @@ export default function CameraScreen() {
     if (photo?.uri) {
       await MediaLibrary.saveToLibraryAsync(photo.uri);
       console.log('Saved to library:', photo.uri);
-      navigation.goBack(); // NAVIGATES BACK TO ReportWasteScreen
+      navigation.navigate('ReportWaste', { photoUri: photo.uri }); //Saves the photo to show as preview when going back to the ReportWasteScreen
     }
   };
 
