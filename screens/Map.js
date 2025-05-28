@@ -1,6 +1,8 @@
+// Map screen 
 // made by Adam Holst Godkin
+
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ActivityIndicator, Text, Platform } from 'react-native';
+import { View, StyleSheet, ActivityIndicator, Text, Image } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 import MarkerInformation from "../components/MarkerInformation"
@@ -26,7 +28,6 @@ export default function MapScreen() {
     const [errorMsg, setErrorMsg] = useState(null);
     const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
-    // Add image and icon data
     const markersInfo = PinData.map(marker => ({
         ...marker,
         image: imageMap[marker.image],
@@ -78,22 +79,25 @@ export default function MapScreen() {
                 {markersInfo.map((marker) => (
                     <Marker
                         key={marker.id}
-                        coordinate={{ latitude: marker.latitude, longitude: marker.longitude, }}
+                        coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
                         onPress={() =>
                             setSelectedMarkerId((prev) => (prev === marker.id ? null : marker.id))
-                        }
-                        image={
-                            marker.id === 3
-                                ? selectedMarkerId === 3
-                                    ? pinHazardousSelected
-                                    : pinHazardousUnselected
-                                : selectedMarkerId === marker.id
-                                    ? pinNormalSelected
-                                    : pinNormalUnselected
                         }
                         anchor={{ x: 0.5, y: 1 }}
                         calloutAnchor={{ x: 0.5, y: 0 }}
                     >
+                        <Image
+                            source={
+                                marker.id === 3
+                                    ? selectedMarkerId === 3
+                                        ? pinHazardousSelected
+                                        : pinHazardousUnselected
+                                    : selectedMarkerId === marker.id
+                                        ? pinNormalSelected
+                                        : pinNormalUnselected
+                            }
+                            style={{ width: 32, height: 32 }}
+                        />
                         <Callout tooltip>
                             <MarkerInformation
                                 title={marker.title}
