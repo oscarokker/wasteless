@@ -89,14 +89,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   XPEarnedText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '500',
-    color: '#333333',
+    color: '#313131',
     textAlign: 'left',
+    marginTop: 4,
   },
   XPRequiredText: {
-    fontSize: 10,
-    color: '#333333',
+    fontSize: 12,
+    color: '#313131',
     textAlign: 'left',
   },
 });

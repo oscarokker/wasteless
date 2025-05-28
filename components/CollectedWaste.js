@@ -4,8 +4,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const PickedUpWaste = ({ imageSource, minutesAgo }) => (
-  <View style={styles.pickedUpWaste}>
+const CollectedWaste = ({ imageSource, minutesAgo }) => (
+  <View style={styles.collectedWaste}>
     <Image source={imageSource} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
@@ -21,13 +21,17 @@ const PickedUpWaste = ({ imageSource, minutesAgo }) => (
 );
 
 const styles = StyleSheet.create({
-  pickedUpWaste: {
+  collectedWaste: {
     flexDirection: 'row',
     gap: 8,
     borderRadius: 16,
     backgroundColor: '#F5F5F5',
-    overflow: 'hidden',
+    overflow: 'hidden', //skal fjernes hvis vi skal kunne vise skyggen
     elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   wasteImage: {
     width: 80,
@@ -68,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PickedUpWaste;
+export default CollectedWaste;

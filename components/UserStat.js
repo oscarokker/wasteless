@@ -24,11 +24,15 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderRadius: 16,
     backgroundColor: '#F5F5F5',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
   statTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#355231',
+    color: '#313131',
   },
   statIcon: {
     width: 48,

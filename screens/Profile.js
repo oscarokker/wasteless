@@ -5,7 +5,7 @@ import React from 'react';
 import { ScrollView, Dimensions, View, Text, StyleSheet } from 'react-native';
 import ProfileHeader from '../components/ProfileHeader';
 import UserStat from '../components/UserStat';
-import PickedUpWaste from '../components/PickedUpWaste';
+import CollectedWaste from '../components/CollectedWaste';
 import wasteCollected from "../assets/icons/waste-collected-icon.png";
 import wasteWeight from "../assets/icons/waste-weight-icon.png";
 import co2eAvoided from "../assets/icons/co2e-avoided-icon.png";
@@ -34,6 +34,7 @@ const Profile = () => {
         paddingBottom: 64,
         flexDirection: 'column',
         gap: 32,
+        backgroundColor: '#FFFFFF',
       }}
     >
       <ProfileHeader />
@@ -69,10 +70,10 @@ const Profile = () => {
       </View>
       <View style={styles.wasteCollected}>
         <Text style={styles.headline2}>Collected Waste</Text>
-        <PickedUpWaste imageSource={waste1} minutesAgo="4" />
-        <PickedUpWaste imageSource={waste2} minutesAgo="11" />
-        <PickedUpWaste imageSource={waste3} minutesAgo="84" />
-        <PickedUpWaste imageSource={waste4} minutesAgo="91" />
+        <CollectedWaste imageSource={waste1} minutesAgo="4" />
+        <CollectedWaste imageSource={waste2} minutesAgo="11" />
+        <CollectedWaste imageSource={waste3} minutesAgo="84" />
+        <CollectedWaste imageSource={waste4} minutesAgo="91" />
       </View>
     </ScrollView>
   );

@@ -211,7 +211,7 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
   placeholderRect: {
     height: 150,
     width: '100%',
-    backgroundColor: '#EBEBEB',
+    backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -249,12 +249,12 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     padding: 10,
     width: 140,
     height: 45,
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 2,
-    marginBottom: 20,
   },
   hazardousWasteButton: {
     backgroundColor: 'rgba(225, 15, 30, 0.4)',
