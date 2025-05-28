@@ -1,8 +1,10 @@
-//MADE BY MARIE HJORTH
+// ReportFeedback component that displays a popup after the user reports picking up waste
+// Made by Marie Hjorth
+
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const ReportFeedback = ({ visible, onClose, XPpoints, header, paragraph }) => {
+const ReportFeedback = ({ visible, onClose, XP, header, paragraph }) => {
   return (
     <Modal
       animationType="fade"
@@ -12,7 +14,7 @@ const ReportFeedback = ({ visible, onClose, XPpoints, header, paragraph }) => {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
-          {XPpoints && <Text style={styles.xpPoints}>{XPpoints}</Text>}
+          {XP && <Text style={styles.XP}>{XP}</Text>}
           <Text style={styles.header}>{header}</Text>
           <Text style={styles.paragraph}>{paragraph}</Text>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
@@ -27,19 +29,19 @@ const ReportFeedback = ({ visible, onClose, XPpoints, header, paragraph }) => {
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: '#0000004d',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContainer: {
     width: '80%',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     paddingVertical: 40,
     paddingHorizontal: 30,
     alignItems: 'center',
   },
-  xpPoints: {
+  XP: {
     fontSize: 24,
     fontWeight: '600',
     color: '#C0C0C0',
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold', 
     textAlign: 'center',
-    },
+  },
 });
 
 export default ReportFeedback;

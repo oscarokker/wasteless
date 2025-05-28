@@ -15,9 +15,6 @@ import waste2 from "../assets/waste_images/waste2.png";
 import waste3 from "../assets/waste_images/waste3.png";
 import waste4 from "../assets/waste_images/waste4.png";
 
-//Behøver man importere alt dette opover?
-
-// Initialize profile
 const Profile = () => {
   const screenWidth = Dimensions.get('window').width;
   const paddingHorizontal = 16;
@@ -27,16 +24,7 @@ const Profile = () => {
 
   // Render profile
   return (
-    <ScrollView
-      contentContainerStyle={{
-        paddingHorizontal: 16,
-        paddingTop: 64,
-        paddingBottom: 80,
-        flexDirection: 'column',
-        gap: 32,
-        backgroundColor: '#FFFFFF',
-      }}
-    >
+    <ScrollView style={styles.contentContainer}>
       <ProfileHeader />
       <View style={styles.statsContainer}>
         <UserStat
@@ -81,6 +69,14 @@ const Profile = () => {
 
 // Style profile
 const styles = StyleSheet.create({
+  contentContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 64,
+    paddingBottom: 64,
+    flexDirection: 'column',
+    gap: 32,
+    backgroundColor: '#FFFFFF',
+  },
   statsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',

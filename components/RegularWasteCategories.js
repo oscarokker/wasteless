@@ -1,8 +1,10 @@
-//Made by Marie Hjorth
+// RegularWasteCategories component used in the ReportWaste screen
+// Made by Marie Hjorth
+
 import React, { useState } from 'react';
 import { Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-//Mapping of all possible categories of regular waste 
+// Mapping of all possible categories of regular waste 
 const wasteCategoriesIcons = {
   'food-waste': {
     selected: require('../assets/icons/WasteCategories/food-waste (selected).png'),
@@ -81,46 +83,46 @@ const RegularWasteCategories = () => {
 
   return (
     <ScrollView 
-     style={styles.horizontalContainer}
-     horizontal={true}
-     showsHorizontalScrollIndicator={false}
+      style={styles.horizontalContainer}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
     >
       {wasteCategories.map ((category) => {
         const isSelected = selectedCategories.includes(category);
         const imageSource = isSelected
-         ? wasteCategoriesIcons[category].selected
-         : wasteCategoriesIcons[category].unselected;
+          ? wasteCategoriesIcons[category].selected
+          : wasteCategoriesIcons[category].unselected;
         
-          return (
-            <TouchableOpacity
-              key={category}
-              style={styles.wasteCategory}
-              onPress={() => toggleCategory(category)}
-            >
-              <Image source={imageSource} style={styles.icon} />
-            </TouchableOpacity>
-          );
-        })}
-      </ScrollView>
-    );
-  };  
+        return (
+          <TouchableOpacity
+            key={category}
+            style={styles.wasteCategory}
+            onPress={() => toggleCategory(category)}
+          >
+            <Image source={imageSource} style={styles.icon} />
+          </TouchableOpacity>
+        );
+      })}
+    </ScrollView>
+  );
+};  
 
 const styles = StyleSheet.create({
   horizontalContainer: {
     padding: 5,
   },
   wasteCategory: {
-    marginRight: 10,
+    marginRight: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
   },
   icon: {
-    width: 65, 
-    height: 65,
+    width: 64, 
+    height: 64,
   },
 });
 

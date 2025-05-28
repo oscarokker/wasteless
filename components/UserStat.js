@@ -1,4 +1,4 @@
-// User Stat component used in the Profile screen
+// UserStat component used in the Profile screen
 // Made by Oscar Rode
 
 import React from 'react';
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderRadius: 16,
     backgroundColor: '#F5F5F5',
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
   },
   statNumber: {
     fontSize: 18,
-    lineHeight: 21.6, // 120%
+    lineHeight: 21.6,
     fontWeight: '700',
     color: '#333333',
   },
   statUnit: {
     fontSize: 12,
-    lineHeight: 16.8, // 140%
+    lineHeight: 16.8,
     color: '#333333',
   },
 });

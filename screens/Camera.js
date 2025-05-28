@@ -1,3 +1,6 @@
+// Camera screen for capturing pictures of reported waste
+// Made by Magnus Schou
+
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
@@ -21,7 +24,7 @@ export default function CameraScreen() {
     if (photo?.uri) {
       await MediaLibrary.saveToLibraryAsync(photo.uri);
       console.log('Saved to library:', photo.uri);
-      navigation.navigate('ReportWaste', { photoUri: photo.uri }); //Saves the photo to show as preview when going back to the ReportWasteScreen
+      navigation.navigate('ReportWaste', { photoUri: photo.uri });
     }
   };
 
@@ -33,6 +36,7 @@ export default function CameraScreen() {
     );
   }
 
+  // Render Camera
   return (
     <View style={styles.container}>
       <CameraView ref={cameraRef} style={styles.camera} facing={facing}>
@@ -50,30 +54,39 @@ export default function CameraScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000' },
-  camera: { flex: 1, justifyContent: 'flex-end' },
+  container: {
+    flex: 1,
+    backgroundColor: '#000'
+  },
+  camera: {
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
   controls: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     paddingVertical: 24,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    //backgroundColor: 'rgba(0,0,0,0.4)', // TODO: Test that alpha works for hex code colors
+    backgroundColor: '#00000066',
   },
   flipButton: {
     position: 'absolute',
     top: 40,
     right: 20,
-    backgroundColor: 'rgba(0,0,0,0.4)',
     padding: 10,
     borderRadius: 8,
+    //backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: '#00000066',
   },  
   takePhotoButton: {
     position: 'absolute',
     bottom: 30,
     alignSelf: 'center',
-    backgroundColor: 'rgba(123, 120, 120, 0.6)',
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    //backgroundColor: 'rgba(120, 120, 120, 0.6)',
+    backgroundColor: '#78787899',
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: '#fff',

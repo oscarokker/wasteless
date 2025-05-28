@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     gap: 8,
     borderRadius: 16,
     backgroundColor: '#F5F5F5',
-    overflow: 'hidden', //skal fjernes hvis vi skal kunne vise skyggen
+    overflow: 'hidden',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   wasteImage: {
     width: 80,
     height: 80,
-    backgroundColor: '#ccc', // Placeholder until real images are used
   },
   wasteDetails: {
     flex: 1,
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   },
   pickupTime: {
     fontSize: 14,
-    lineHeight: 16.8, // 140%
+    lineHeight: 16.8,
     color: '#969696',
     marginLeft: 2,
   },

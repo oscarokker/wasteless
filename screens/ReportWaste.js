@@ -1,8 +1,9 @@
-//Made by Marie Hjorth
-//TO DO: Gør det muligt at vælge flere kategorier
+// ReportWaste screen used to report waste that the user finds
+// Made by Marie Hjorth
+
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { Alert, TouchableOpacity } from 'react-native'; //Alert skal evt. tilføjes, hvis du er ved at gå ud af screenen uden at indsende rapporten
+import { TouchableOpacity } from 'react-native';
 import { Image, StyleSheet, Text, View} from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -14,9 +15,8 @@ export default function ReportWasteScreen(){
   const navigation = useNavigation();
   const [photoUri, setPhotoUri] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [showWarning, setShowWarning] = useState(false); // MARIE: Navngivningen skal opdateres 
+  const [showWarning, setShowWarning] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [isFeedbackVisible, setIsFeedbackVisible] = useState(false);
   const [isHazardousFeedbackVisible, setIsHazardousFeedbackVisible] = useState(false);
   const [isRegularPressed, setIsRegularPressed] = useState(false);
@@ -40,16 +40,14 @@ export default function ReportWasteScreen(){
       }
     })();
   }, []);
-  //MARIE: Skriv kommmentar om, hvad denne del af koden gør
 
   const route = useRoute();
   
   useEffect(() => {
-   if (route.params?.photoUri) {
-     setPhotoUri(route.params.photoUri);
-  }
-}, [route.params?.photoUri]);
-  //MARIE: Skriv kommentar om, hvad denne del af koden gør
+    if (route.params?.photoUri) {
+      setPhotoUri(route.params.photoUri);
+    }
+  }, [route.params?.photoUri]);
 
 
   return (
@@ -66,10 +64,10 @@ export default function ReportWasteScreen(){
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={styles.photoPreview} />
             ) : (
-            <Image 
-            source={require('../assets/icons/camera-icon.png')}
-            style={styles.cameraIcon}
-            />
+              <Image 
+                source={require('../assets/icons/camera-icon.png')}
+                style={styles.cameraIcon}
+              />
             )}
           </TouchableOpacity>
         </View>
@@ -79,10 +77,10 @@ export default function ReportWasteScreen(){
           <Text style={styles.headline2}>Location</Text>
           <Text style={styles.currentLocationAddress}>
             {currentLocation || 'Searching for location...'}
-            </Text>
+          </Text>
         </View>
   
-        {/* CHOOSE TYPE OF WASTE */}
+        {/* CHOOSE WASTE TYPE */}
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Type</Text>
           <View style={styles.buttonRow}>
@@ -96,32 +94,36 @@ export default function ReportWasteScreen(){
                 setIsRegularPressed(true);
                 setIsHazardousPressed(false);
                 setShowWarning(false);
-              }}>
+              }}
+            >
               <Text style={styles.buttonText}>Regular</Text>
             </TouchableOpacity>
-  
             <TouchableOpacity
               style={[
                 styles.hazardousWasteButton,
-                isHazardousPressed && styles.hazardousWastePressed, // Skift til 100% opacitet
+                isHazardousPressed && styles.hazardousWastePressed,
               ]}
               onPress={() => {
                 setShowWarning(true);
                 setIsHazardousPressed(true);
                 setIsRegularPressed(false);
                 setShowCategory(false);
-              }}>
+              }}
+            >
               <Text style={styles.buttonText}>Hazardous</Text>
             </TouchableOpacity>
           </View>
   
+          {/* HAZARDOUS WASTE WARNING */}
           {showWarning && (
             <View style={styles.warningRow}>
               <Image
                 source={require('../assets/icons/be-aware-icon.png')}
                 style={styles.warningIcon}
               />
-              <Text style={styles.warningText}>Please avoid picking up hazardous waste - local authorities will handle it instead.</Text>
+              <Text style={styles.warningText}>
+                Please avoid picking up hazardous waste - local authorities will handle it instead!
+              </Text>
             </View>
           )}
         </View>
@@ -133,6 +135,7 @@ export default function ReportWasteScreen(){
             <RegularWasteCategories/>
           </View>
         )}
+
         {/* REGULAR BUTTON (IF CHOSEN) */}
         {isRegularPressed && (
           <TouchableOpacity
@@ -140,24 +143,28 @@ export default function ReportWasteScreen(){
             onPress={() => {
               setIsFeedbackVisible(true);
               navigation.navigate('Map'); 
-            }}>
+            }}
+          >
             <Text style={styles.buttonText}>Pick up waste</Text>
           </TouchableOpacity>
         )}
+
         {/* HAZARDOUS BUTTON (IF CHOSEN) */}
         {showWarning && (
           <TouchableOpacity
-          style={styles.reportHazardousWasteButton}
-          onPress={() => {
-            setIsFeedbackVisible(false);
-            setIsHazardousFeedbackVisible(true);
-            navigation.navigate('Map'); 
-          }}>
-          <Text style={styles.darkButtonText}>Report hazardous waste</Text>
-        </TouchableOpacity>
+            style={styles.reportHazardousWasteButton}
+            onPress={() => {
+              setIsFeedbackVisible(false);
+              setIsHazardousFeedbackVisible(true);
+              navigation.navigate('Map'); 
+            }}
+          >
+            <Text style={styles.darkButtonText}>Report hazardous waste</Text>
+          </TouchableOpacity>
         )}
       </View>
-      {/* FEEDBACK MODAL - REGULAR WASTE */}
+
+      {/* FEEDBACK MODAL - REGULAR WASTE */} {/* TODO: What is feedback modal */}
       <ReportFeedback
         visible={isFeedbackVisible}
         onClose={() => {
@@ -168,6 +175,7 @@ export default function ReportWasteScreen(){
         header="Thank you!"
         paragraph="The waste has been reported."
       />
+
       {/* FEEDBACK MODAL - HAZARDOUS WASTE */}
       <ReportFeedback
         visible={isHazardousFeedbackVisible}
@@ -179,12 +187,13 @@ export default function ReportWasteScreen(){
         header="Thank you!"
         paragraph="The hazardous waste has been reported. Please avoid picking up hazardous waste!"
       />
+
       <StatusBar style="auto" />
     </>
   );
 }
 
-const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme type kode
+const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     paddingTop: 70,
@@ -197,17 +206,17 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     paddingBottom: 15,
   },
   headline1: {
-  color: '313131',
-  fontSize: 32,
-  fontWeight: 'bold',
-  textAlign: 'center', 
+    color: '#313131',
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center', 
   },
   headline2: {
-    color: '313131',
+    color: '#313131',
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,  
-    },
+  },
   placeholderRect: {
     height: 150,
     width: '100%',
@@ -236,7 +245,7 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     fontSize: 14,
     fontStyle: 'italic', 
     marginLeft: 10,
-    }, 
+  }, 
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -244,25 +253,25 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     gap: 15,
   },
   regularWasteButton: {
-    backgroundColor: 'rgba(133, 197, 108, 0.4)',
+    backgroundColor: '#85c56c66',
     borderRadius: 5,
     padding: 10,
     width: 140,
     height: 45,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 2,
   },
   hazardousWasteButton: {
-    backgroundColor: 'rgba(225, 15, 30, 0.4)',
+    backgroundColor: '#e10f1e66',
     borderRadius: 5,
     padding: 10,
     width: 140,
     height: 45,
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -270,10 +279,10 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     marginBottom: 20,
   },
   regularButtonPressed: {
-    backgroundColor: 'rgba(133, 197, 108, 1)',
+    backgroundColor: '#85c56c',
   },
   hazardousWastePressed: {
-    backgroundColor: 'rgba(225, 15, 30, 1)',
+    backgroundColor: '#e10f1e',
   },
   buttonText: {
     color: 'white',
@@ -309,7 +318,7 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     justifyContent: 'center', 
     backgroundColor: '#FFFFFF',
     borderWidth: 2,
-    borderColor: 'rgba(225, 15, 30, 1)', //MARIE: Skal denne være rød? 
+    borderColor: '#e10f1e',
     bottom: 25,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
