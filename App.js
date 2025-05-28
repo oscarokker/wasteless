@@ -10,28 +10,24 @@ import CameraScreen from './screens/Camera';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-// Navigation stack for report waste screen
+// Navigation stack for ReportWasteScreen
 function ReportWasteStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="ReportWaste"
-        component={ReportWasteScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Camera"
-        component={CameraScreen}
-        options={{ title: 'Take a Picture' }}
-      />
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="ReportWaste" component={ReportWasteScreen} />
+      <Stack.Screen name="Camera" component={CameraScreen} />
     </Stack.Navigator>
   );
 }
 
-// Bottom navigation bar
+// Global Bottom Navigation Bar
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }} // 🔹 globalt for hele tab-bar
+    >
       <Tab.Screen
         name="Map"
         component={MapScreen}
@@ -45,7 +41,6 @@ function TabNavigator() {
         name="Report"
         component={ReportWasteStack}
         options={{
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add" size={size} color={color} />
           ),
