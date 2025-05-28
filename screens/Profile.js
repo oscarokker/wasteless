@@ -30,8 +30,8 @@ const Profile = () => {
     <ScrollView
       contentContainerStyle={{
         paddingHorizontal: 16,
-        paddingTop: 16,
-        paddingBottom: 64,
+        paddingTop: 64,
+        paddingBottom: 80,
         flexDirection: 'column',
         gap: 32,
         backgroundColor: '#FFFFFF',
