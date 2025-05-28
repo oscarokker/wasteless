@@ -12,7 +12,7 @@ const ProfileHeader = () => (
     </View>
     <View style={styles.playerLevel}>
       <View style={styles.levelAndTitle}>
-        <Text style={styles.levelText}>Lv 17</Text>
+        <Text style={styles.levelText}>Level 17</Text>
         <Text style={styles.playerTitleText}>Native Wastelander</Text>
       </View>
       <View style={styles.XPBar}>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#333333',
+    color: '#313131',
   },
   playerLevel: {
     flexDirection: 'column',
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   levelText: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#000000',
+    color: '#313131',
   },
   playerTitleText: {
     fontSize: 12,
     fontStyle: 'italic',
-    color: '#000000',
+    color: '#313131',
   },
   XPBar: {
     width: '100%',
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   XPBarEarned: {
     width: '64%',
     height: '100%',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#85C56C',
     borderRadius: 4,
   },
   XPLabelContainer: {

@@ -46,7 +46,7 @@ const Profile = () => {
           width={userStatWidth}
         />
         <UserStat
-          title="Total waste weight"
+          title="Waste weight"
           iconSource={wasteWeight}
           number="484"
           unit="kg"
@@ -68,7 +68,7 @@ const Profile = () => {
         />
       </View>
       <View style={styles.wasteCollected}>
-        <Text style={styles.collectedWasteText}>Collected Waste</Text>
+        <Text style={styles.headline2}>Collected Waste</Text>
         <PickedUpWaste imageSource={waste1} minutesAgo="4" />
         <PickedUpWaste imageSource={waste2} minutesAgo="11" />
         <PickedUpWaste imageSource={waste3} minutesAgo="84" />
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     paddingHorizontal: 16,
-    marginBottom: 10,  
   },
 });
 

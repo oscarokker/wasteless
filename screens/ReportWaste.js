@@ -1,4 +1,4 @@
-//MADE BY MARIE HJORTH
+//Made by Marie Hjorth
 //TO DO: Gør det muligt at vælge flere kategorier
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
@@ -309,7 +309,6 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     justifyContent: 'center', 
     backgroundColor: '#FFFFFF',
     borderWidth: 2,
-    //borderColor: '#85C56C', //MARIE: Skal denne være rød? 
     borderColor: 'rgba(225, 15, 30, 1)', //MARIE: Skal denne være rød? 
     bottom: 25,
     shadowColor: '#000',
