@@ -197,13 +197,13 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     paddingBottom: 15,
   },
   headline1: {
-  color: 'black',
+  color: '313131',
   fontSize: 32,
   fontWeight: 'bold',
   textAlign: 'center', 
   },
   headline2: {
-    color: 'black',
+    color: '313131',
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,  
@@ -228,8 +228,8 @@ const styles = StyleSheet.create({ //MARIE: Opdater COLORS til at være samme ty
     resizeMode: 'cover',
   },
   warningIcon: {
-    width: 35,
-    height: 35, //MARIE: Skal denne være større?
+    width: 40,
+    height: 40,
   },
   currentLocationAddress: {
     color: '#969696',

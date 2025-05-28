@@ -9,6 +9,8 @@ import waste2 from "../assets/waste_images/waste2.png";
 import waste3 from "../assets/waste_images/waste3.png";
 import waste4 from "../assets/waste_images/waste4.png";
 
+//Behøver man importere alt dette opover?
+
 // Map user stat icons to an array
 const userStatIcons = {
   wasteCollected,
@@ -34,7 +36,7 @@ const ProfileHeader = () => (
     </View>
     <View style={styles.playerLevel}>
       <View style={styles.levelAndTitle}>
-        <Text style={styles.levelText}>Lv 17</Text>
+        <Text style={styles.levelText}>Level 17</Text>
         <Text style={styles.playerTitleText}>Native Wastelander</Text>
       </View>
       <View style={styles.XPBar}>
@@ -68,12 +70,15 @@ const PickedUpWaste = ({ image, minutesAgo }) => (
     <Image source={wasteImages[image]} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
-        <Image source={require('../assets/food-waste-icon.png')} style={styles.wasteTypeIcon} />
-        <Image source={require('../assets/plastic-waste-icon.png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/icons/WasteCategories/metal (selected).png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/icons/WasteCategories/plastics (selected).png')} style={styles.wasteTypeIcon} />
       </View>
       <View style={styles.timeAgo}>
-        <Image source={require('../assets/clock-icon.png')} />
-        <Text style={styles.wasteTime}>{minutesAgo} min ago</Text>
+      <Image
+      source={require('../assets/icons/time-ago-icon.png')}
+      style={styles.timeAgoIcon}
+      />
+        <Text style={styles.pickupTime}>{minutesAgo} min ago</Text>
       </View>
     </View>
   </View>
@@ -99,13 +104,13 @@ const Profile = () => {
     >
       <ProfileHeader />
       <View style={styles.statsContainer}>
-        <UserStat title="Waste collected" icon="wasteCollected" number="449" unit="pieces" width={userStatWidth} />
-        <UserStat title="Total waste weight" icon="wasteWeight" number="484" unit="kg" width={userStatWidth} />
-        <UserStat title="CO2e avoided" icon="co2eAvoided" number="327" unit="kg" width={userStatWidth} />
-        <UserStat title="Distance walked" icon="distanceWalked" number="238" unit="km" width={userStatWidth} />
+        <UserStat title="Waste Collected" icon="wasteCollected" number="449" unit="pieces" width={userStatWidth} />
+        <UserStat title="Total Waste" icon="wasteWeight" number="484" unit="kg" width={userStatWidth} />
+        <UserStat title="CO2e Avoided" icon="co2eAvoided" number="327" unit="kg" width={userStatWidth} />
+        <UserStat title="Distance Walked" icon="distanceWalked" number="238" unit="km" width={userStatWidth} />
       </View>
       <View style={styles.wasteCollected}>
-        <Text style={styles.collectedWasteText}>Collected Waste</Text>
+        <Text style={styles.headline2}>Your Reported Waste</Text>
         <PickedUpWaste image="waste1" minutesAgo="4" />
         <PickedUpWaste image="waste2" minutesAgo="11" />
         <PickedUpWaste image="waste3" minutesAgo="84" />
@@ -133,9 +138,8 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   profileName: {
-    fontSize: 18,
-    fontWeight: 500,
-    color: '#333333',
+    fontSize: 20,
+    color: '313131',
   },
   playerLevel: {
     flexDirection: 'column',
@@ -149,17 +153,17 @@ const styles = StyleSheet.create({
   },
   levelText: {
     fontSize: 20,
-    fontWeight: 700,
-    color: '#000000',
+    fontWeight: 'bold',
+    color: '#313131',
   },
   playerTitleText: {
-    fontSize: 12,
+    fontSize: 14,
     fontStyle: 'italic',
-    color: '#000000',
+    color: '#313131',
   },
   XPBar: {
     width: '100%',
-    gap: 4,
+    gap: 5,
   },
   XPBarFull: {
     height: 8,
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
   XPBarEarned: {
     width: '64%',
     height: '100%',
-    backgroundColor: '#007BFF',
+    backgroundColor: '#85C56C',
     borderRadius: 4,
   },
   XPLabelContainer: {
@@ -177,14 +181,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   XPEarnedText: {
-    fontSize: 14,
-    fontWeight: 500,
-    color: '#333333',
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#313131',
     textAlign: 'left',
   },
   XPRequiredText: {
-    fontSize: 10,
-    color: '#333333',
+    fontSize: 12,
+    color: '#313131',
     textAlign: 'left',
   },
   statsContainer: {
@@ -205,7 +209,7 @@ const styles = StyleSheet.create({
   statTitle: {
     fontSize: 16,
     fontWeight: 700,
-    color: '#355231',
+    color: '#313131',
   },
   statIcon: {
     width: 48,
@@ -218,19 +222,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 21.6, // 120%
     fontWeight: 700,
-    color: '#333333',
+    color: '#313131',
   },
   statUnit: {
     fontSize: 12,
     lineHeight: 16.8, // 140%
-    color: '#333333',
+    color: '#313131',
   },
-  collectedWasteText: {
-    fontSize: 18,
+  headline2: {
+    color: '313131',
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#333333',
     paddingHorizontal: 16,
+    marginBottom: 10,  
   },
   wasteCollected: {
     gap: 16,
@@ -246,7 +251,7 @@ const styles = StyleSheet.create({
   wasteImage: {
     width: 80,
     height: 80,
-    backgroundColor: '#ccc', // TODO: replace with images of waste
+    backgroundColor: '#ccc', // TODO: replace with images of waste - er dette gjort? 
   },
   wasteDetails: {
     flex: 1,
@@ -261,17 +266,23 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   wasteTypeIcon: {
+    width: 40,
+    height: 40,
     borderRadius: 4,
+  },
+  timeAgoIcon: {
+    width: 20,
+    height: 20,
   },
   timeAgo: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 1,
   },
-  wasteTime: {
-    fontSize: 12,
-    lineHeight: 16.8, // 140%
-    color: '#666666',
+  pickupTime: {
+    color: '#969696',
+    fontSize: 14,
+    marginLeft: 10,
   },
 });
 
