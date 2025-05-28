@@ -9,12 +9,12 @@ const PickedUpWaste = ({ imageSource, minutesAgo }) => (
     <Image source={imageSource} style={styles.wasteImage} />
     <View style={styles.wasteDetails}>
       <View style={styles.iconContainer}>
-        <Image source={require('../assets/food-waste-icon.png')} style={styles.wasteTypeIcon} />
-        <Image source={require('../assets/plastic-waste-icon.png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/icons/WasteCategories/metal (selected).png')} style={styles.wasteTypeIcon} />
+        <Image source={require('../assets/icons/WasteCategories/plastics (selected).png')} style={styles.wasteTypeIcon} />
       </View>
       <View style={styles.timeAgo}>
-        <Image source={require('../assets/clock-icon.png')} style={styles.wasteTimeIcon} />
-        <Text style={styles.wasteTime}>{minutesAgo} min ago</Text>
+        <Image source={require('../assets/icons/time-ago-icon.png')} style={styles.timeAgoIcon} />
+        <Text style={styles.pickupTime}>{minutesAgo} min ago</Text>
       </View>
     </View>
   </View>
@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   wasteTypeIcon: {
+    width: 40,
+    height: 40,
     borderRadius: 4,
   },
   timeAgo: {
@@ -54,14 +56,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 4,
   },
-  wasteTimeIcon: {
-    width: 16,
-    height: 16,
+  timeAgoIcon: {
+    width: 20,
+    height: 20,
   },
-  wasteTime: {
-    fontSize: 12,
+  pickupTime: {
+    fontSize: 14,
     lineHeight: 16.8, // 140%
-    color: '#666666',
+    color: '#969696',
+    marginLeft: 2,
   },
 });
 
