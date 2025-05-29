@@ -1,3 +1,6 @@
+// Login Screen Component
+// Made by Magnus Schou
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, } from 'react-native';
 import WastelessLogo from '../assets/wasteless-logo.png';
