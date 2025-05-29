@@ -2,7 +2,7 @@
 
 // TODO: Undersøg om denne funktion bliver kallet et sted
 
-import { useState, useEffect } from 'react';
+/*import { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import * as Device from 'expo-device';
 import * as Location from 'expo-location';
@@ -30,4 +30,4 @@ export default function useUserLocation() {
     }, []);
 
     return { location, errorMsg };
-}
+} */

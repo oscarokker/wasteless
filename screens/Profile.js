@@ -24,7 +24,9 @@ const Profile = () => {
 
   // Render profile
   return (
-    <ScrollView style={styles.contentContainer}>
+    <ScrollView
+      contentContainerStyle={styles.contentContainer}
+    >
       <ProfileHeader />
       <View style={styles.statsContainer}>
         <UserStat
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   wasteCollected: {
-    gap: 16,
+    gap: 8,
   },
   headline2: {
     color: '313131',
