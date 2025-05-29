@@ -24,9 +24,7 @@ const Profile = () => {
 
   // Render profile
   return (
-    <ScrollView
-      contentContainerStyle={styles.contentContainer}
-    >
+    <ScrollView contentContainerStyle={styles.contentContainer}>
       <ProfileHeader />
       <View style={styles.statsContainer}>
         <UserStat
