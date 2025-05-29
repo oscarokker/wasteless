@@ -14,7 +14,7 @@ const ReportFeedback = ({ visible, onClose, XP, header, paragraph }) => {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
-          {XP && <Text style={styles.XP}>{XP}</Text>}
+          <Text style={styles.XP}>{XP}</Text>
           <Text style={styles.header}>{header}</Text>
           <Text style={styles.paragraph}>{paragraph}</Text>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>

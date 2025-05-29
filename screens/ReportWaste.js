@@ -163,7 +163,7 @@ export default function ReportWasteScreen() {
           setIsFeedbackVisible(false);
           navigation.navigate('Map');
         }}
-        XPpoints="+ 200 XP"
+        XP="+ 200 XP"
         header="Thank you!"
         paragraph="The waste has been reported."
       />
@@ -174,7 +174,7 @@ export default function ReportWasteScreen() {
           setIsHazardousFeedbackVisible(false);
           navigation.navigate('Map');
         }}
-        XPpoints="+ 100 XP"
+        XP="+ 100 XP"
         header="Thank you!"
         paragraph="The hazardous waste has been reported. Please avoid picking up hazardous waste!"
       />
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   darkButtonText: {
-    color: '#85C56C',
+    color: '#313131',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

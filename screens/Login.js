@@ -1,4 +1,4 @@
-// Login Screen Component
+// Login is used as default screen
 // Made by Magnus Schou
 
 import React, { useState } from 'react';
