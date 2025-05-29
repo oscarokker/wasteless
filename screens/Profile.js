@@ -22,7 +22,7 @@ const Profile = () => {
   const availableWidth = screenWidth - 2 * paddingHorizontal;
   const userStatWidth = (availableWidth - gap) / 2;
 
-  // Render profile
+  // Profile screen structure
   return (
     <ScrollView contentContainerStyle={styles.contentContainer}>
       <ProfileHeader />
