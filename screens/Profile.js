@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   headline2: {
-    color: '313131',
+    color: '#313131',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
