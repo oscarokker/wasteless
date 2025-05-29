@@ -4,14 +4,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import ReportFeedback from '../components/ReportFeedback';
 import RegularWasteCategories from '../components/RegularWasteCategories';
 
-export default function ReportWasteScreen(){
+export default function ReportWasteScreen() {
   const navigation = useNavigation();
   const [photoUri, setPhotoUri] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -42,7 +42,7 @@ export default function ReportWasteScreen(){
   }, []);
 
   const route = useRoute();
-  
+
   useEffect(() => {
     if (route.params?.photoUri) {
       setPhotoUri(route.params.photoUri);
@@ -54,8 +54,7 @@ export default function ReportWasteScreen(){
     <>
       <View style={styles.mainContainer}>
         <Text style={styles.headline1}>Add found waste</Text>
-  
-        {/* TAKE PICTURE OF FOUND WASTE */}
+
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Waste</Text>
           <TouchableOpacity
@@ -64,23 +63,21 @@ export default function ReportWasteScreen(){
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={styles.photoPreview} />
             ) : (
-              <Image 
+              <Image
                 source={require('../assets/icons/camera-icon.png')}
                 style={styles.cameraIcon}
               />
             )}
           </TouchableOpacity>
         </View>
-  
-        {/* CURRENT LOCATION */}
+
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Location</Text>
           <Text style={styles.currentLocationAddress}>
             {currentLocation || 'Searching for location...'}
           </Text>
         </View>
-  
-        {/* CHOOSE WASTE TYPE */}
+
         <View style={styles.subContainer}>
           <Text style={styles.headline2}>Type</Text>
           <View style={styles.buttonRow}>
@@ -113,8 +110,7 @@ export default function ReportWasteScreen(){
               <Text style={styles.buttonText}>Hazardous</Text>
             </TouchableOpacity>
           </View>
-  
-          {/* HAZARDOUS WASTE WARNING */}
+
           {showWarning && (
             <View style={styles.warningRow}>
               <Image
@@ -127,36 +123,33 @@ export default function ReportWasteScreen(){
             </View>
           )}
         </View>
-  
-        {/* CATEGORY (IF REGULAR WASTE IS CHOSEN) */}
+
         {showCategory && (
           <View style={styles.categoryContainer}>
             <Text style={styles.headline2}>Category</Text>
-            <RegularWasteCategories/>
+            <RegularWasteCategories />
           </View>
         )}
 
-        {/* REGULAR BUTTON (IF CHOSEN) */}
         {isRegularPressed && (
           <TouchableOpacity
             style={styles.reportRegularWasteButton}
             onPress={() => {
               setIsFeedbackVisible(true);
-              navigation.navigate('Map'); 
+              navigation.navigate('Map');
             }}
           >
             <Text style={styles.buttonText}>Pick up waste</Text>
           </TouchableOpacity>
         )}
 
-        {/* HAZARDOUS BUTTON (IF CHOSEN) */}
         {showWarning && (
           <TouchableOpacity
             style={styles.reportHazardousWasteButton}
             onPress={() => {
               setIsFeedbackVisible(false);
               setIsHazardousFeedbackVisible(true);
-              navigation.navigate('Map'); 
+              navigation.navigate('Map');
             }}
           >
             <Text style={styles.darkButtonText}>Report hazardous waste</Text>
@@ -164,7 +157,6 @@ export default function ReportWasteScreen(){
         )}
       </View>
 
-      {/* FEEDBACK MODAL - REGULAR WASTE */} {/* TODO: What is feedback modal */}
       <ReportFeedback
         visible={isFeedbackVisible}
         onClose={() => {
@@ -176,7 +168,6 @@ export default function ReportWasteScreen(){
         paragraph="The waste has been reported."
       />
 
-      {/* FEEDBACK MODAL - HAZARDOUS WASTE */}
       <ReportFeedback
         visible={isHazardousFeedbackVisible}
         onClose={() => {
@@ -209,13 +200,13 @@ const styles = StyleSheet.create({
     color: '#313131',
     fontSize: 32,
     fontWeight: 'bold',
-    textAlign: 'center', 
+    textAlign: 'center',
   },
   headline2: {
     color: '#313131',
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,  
+    marginBottom: 10,
   },
   placeholderRect: {
     height: 150,
@@ -243,13 +234,13 @@ const styles = StyleSheet.create({
   currentLocationAddress: {
     color: '#969696',
     fontSize: 14,
-    fontStyle: 'italic', 
+    fontStyle: 'italic',
     marginLeft: 10,
-  }, 
+  },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',  
+    alignItems: 'center',
     gap: 15,
   },
   regularWasteButton: {
@@ -287,19 +278,19 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 18,
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
     textAlign: 'center',
-    },
+  },
   darkButtonText: {
-    color: '85C56C',
+    color: '#85C56C',
     fontSize: 18,
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
     textAlign: 'center',
-    },
+  },
   warningRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',  
+    alignItems: 'center',
     gap: 25,
     width: 250,
     alignSelf: 'center'
@@ -315,12 +306,12 @@ const styles = StyleSheet.create({
     height: 55,
     width: 270,
     alignSelf: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     backgroundColor: '#FFFFFF',
     borderWidth: 2,
     borderColor: '#e10f1e',
     bottom: 25,
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
@@ -332,12 +323,12 @@ const styles = StyleSheet.create({
     height: 55,
     width: 270,
     alignSelf: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     backgroundColor: '#85C56C',
     borderWidth: 2,
     borderColor: '#85C56C',
     bottom: 25,
-    shadowColor: '#000',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,

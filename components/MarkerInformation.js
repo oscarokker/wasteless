@@ -1,7 +1,6 @@
 // MarkerInformation component used for tooltips in the Map screen
 // Made by Adam Godkin
 
-import * as React from "react";
 import { Text, StyleSheet, View, Image, Dimensions } from "react-native";
 import batteriesIcon from "../assets/icons/WasteCategories/batteries (selected).png";
 import bulkyWasteIcon from "../assets/icons/WasteCategories/bulky-waste (selected).png";
